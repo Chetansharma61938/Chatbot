@@ -1,0 +1,9 @@
+[build-system]
+requires = ["setuptools>=65.5.1", "wheel>=0.40.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-document-chat"
+version = "0.1.0"
+description = "A Streamlit application for chatting with PDF documents"
+requires-python = ">=3.8" 
