@@ -50,9 +50,9 @@ logger = logging.getLogger(__name__)
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
-# Use Redis Cloud free tier as default
-REDIS_HOST = os.environ.get("REDIS_HOST", "redis-10042.c275.us-east-1-4.ec2.cloud.redislabs.com")
-REDIS_PORT = int(os.environ.get("REDIS_PORT", 10042))
+# Use local Redis as default
+REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+REDIS_PORT = int(os.environ.get("REDIS_PORT", 6379))
 REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", "")
 EMBEDDINGS_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 LLM_MODEL = "llama-3.3-70b-versatile"
@@ -72,7 +72,7 @@ def get_embeddings_model():
 def get_llm():
     """Get the Groq LLM model"""
     if not GROQ_API_KEY:
-        raise ValueError("GROQ_API_KEY environment variable is not set")
+        raise ValueError("GROQ_API_KEY environment variable is not set. Please set it in your .env file.")
     
     try:
         return ChatGroq(
